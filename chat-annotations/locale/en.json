@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Chat Annotations",
+    "description": "Select any passage in the conversation to highlight and annotate it; collect the set as the base of the next turn, or append it to a Markdown file with a source link back to the dsh session record."
+  }
+}

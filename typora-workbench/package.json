@@ -1,0 +1,29 @@
+{
+  "name": "@local/typora-workbench",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Typora-style Markdown workbench panel with change attribution and git commit",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}

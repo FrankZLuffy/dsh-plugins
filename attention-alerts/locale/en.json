@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Attention Alerts",
+    "description": "Raises a Windows notification with a sound when a tool needs approval or a turn finishes, even while DSH is minimized."
+  }
+}

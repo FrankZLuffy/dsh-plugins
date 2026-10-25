@@ -1,0 +1,3 @@
+- insert:
+    - id: typora-workbench
+      name: '@local/typora-workbench'

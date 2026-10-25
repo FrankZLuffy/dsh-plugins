@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Markdown Workbench",
+    "description": "A Typora-style Markdown panel with file list, live preview, per-source change attribution (mine vs DSH edits), and Git commit."
+  }
+}

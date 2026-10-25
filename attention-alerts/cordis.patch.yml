@@ -1,0 +1,3 @@
+- insert:
+    - id: attention-alerts
+      name: '@local/attention-alerts'

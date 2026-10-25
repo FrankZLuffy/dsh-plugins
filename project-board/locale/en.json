@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Project Board",
+    "description": "Collect project roots (folders or files) on one board, drag to pin and reorder, and open them with the same local-application menu as the header's Open In control."
+  }
+}

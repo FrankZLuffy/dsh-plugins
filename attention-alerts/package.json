@@ -1,0 +1,23 @@
+{
+  "name": "@local/attention-alerts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Attention Alerts: raise a Windows notification with a sound when a tool needs approval or a turn finishes, even while DSH is in the background.",
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

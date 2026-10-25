@@ -1,0 +1,9 @@
+# Keep this repo LF everywhere: plugin code is loaded as ESM by DSH on Windows too,
+# and mixed endings here have already caused churn in sibling repos.
+* text=auto eol=lf
+
+*.svg text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.mjs text eol=lf

@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Markdown 工作台",
+    "description": "Typora 风格的 Markdown 编辑面板：文件列表、实时预览、按来源标注改动（我的修改 / DSH 修改），并直接提交 Git。"
+  }
+}

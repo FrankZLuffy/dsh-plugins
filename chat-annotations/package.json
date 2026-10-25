@@ -1,0 +1,29 @@
+{
+  "name": "@local/chat-annotations",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Chat annotations: highlight any passage in the conversation, attach a note, reuse the collected set as the base of the next turn, and append it to a Markdown file.",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}

@@ -1,0 +1,14 @@
+# pnpm / node
+node_modules/
+pnpm-debug.log*
+
+# Local scratch and backups left by ad-hoc patches
+*.orig
+*.bak
+*.before
+*.log
+
+# OS noise
+Thumbs.db
+desktop.ini
+.DS_Store

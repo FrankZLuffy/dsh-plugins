@@ -1,0 +1,22 @@
+{
+  "name": "dsh-profile-desktop",
+  "private": true,
+  "dsh": {
+    "profile": {
+      "bundles": [
+        "@deepseek-ai/dsh-base",
+        "@deepseek-ai/dsh-web-app",
+        "@local/typora-workbench",
+        "@local/project-board",
+        "@local/attention-alerts",
+        "@local/chat-annotations"
+      ]
+    }
+  },
+  "dependencies": {
+    "@local/attention-alerts": "link:D:/MyGithub/dsh/dsh-plugins/attention-alerts",
+    "@local/chat-annotations": "link:D:/MyGithub/dsh/dsh-plugins/chat-annotations",
+    "@local/project-board": "link:D:/MyGithub/dsh/dsh-plugins/project-board",
+    "@local/typora-workbench": "link:D:/MyGithub/dsh/dsh-plugins/typora-workbench"
+  }
+}
