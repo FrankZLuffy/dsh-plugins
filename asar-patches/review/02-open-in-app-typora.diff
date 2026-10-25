@@ -1,0 +1,54 @@
+# 02-open-in-app-typora — Open In: add Typora and make it the default editor for workspaces
+#
+# Unified diff of the rules in patches/02-open-in-app-typora.mjs.
+# Regenerate with: node bin/gen-review.mjs 02-open-in-app-typora --baseline ...
+
+--- a/dsh/node_modules/@deepseek-ai/dsh-host-open-in-app/lib/index.js
++++ b/dsh/node_modules/@deepseek-ai/dsh-host-open-in-app/lib/index.js
+@@ -151,8 +151,12 @@ const OPEN_IN_APP_CATALOG = [
+ 			win32: spec(appPaths("Code - Insiders.exe"), installRecord("Microsoft Visual Studio Code Insiders", "Code - Insiders.exe"), file(["${LOCALAPPDATA}/Programs/Microsoft VS Code Insiders/Code - Insiders.exe"])),
+ 			linux: desktopSpec("code-insiders", cli("code-insiders"))
+ 		}
+ 	},
++	{
++		id: "typora",
++		platforms: { win32: spec(appPaths("Typora.exe"), installRecord("Typora"), file(["${ProgramFiles}/Typora/Typora.exe", "${LOCALAPPDATA}/Programs/Typora/Typora.exe"])) }
++	},
+ 	{
+ 		id: "windsurf",
+ 		platforms: {
+ 			darwin: macApp("Windsurf.app"),
+
+--- a/dsh/node_modules/@deepseek-ai/dsh-client-ui-open-in-app/lib/client.js
++++ b/dsh/node_modules/@deepseek-ai/dsh-client-ui-open-in-app/lib/client.js
+@@ -24,8 +24,9 @@ window.__ModuleLoader__.load({
+ 			filemanager: "app.filemanager",
+ 			cursor: "app.cursor",
+ 			vscode: "app.vscode",
+ 			vscodeinsiders: "app.vscodeinsiders",
++			typora: "app.typora",
+ 			windsurf: "app.windsurf",
+ 			zed: "app.zed",
+ 			sublimetext: "app.sublimetext",
+ 			xcode: "app.xcode",
+@@ -66,9 +67,9 @@ window.__ModuleLoader__.load({
+ 			fetcher;
+ 			/** Installed app ids in host menu order; null until the host answered. */
+ 			apps = (0, _deepseek_ai_dsh_client_store.createSnapshotStore)(null);
+ 			/** Last chosen app id, or empty before the first choice, shared across sessions and browser restarts. */
+-			choice = (0, _deepseek_ai_dsh_client_store.createSnapshotStore)("", { persist: { name: "dsh.open-in-app.choice" } });
++			choice = (0, _deepseek_ai_dsh_client_store.createSnapshotStore)("typora", { persist: { name: "dsh.open-in-app.choice.typora" } });
+ 			/** Current launch, shared by pointer and keyboard gestures. */
+ 			operation = (0, _deepseek_ai_dsh_client_store.createSnapshotStore)({
+ 				phase: "idle",
+ 				path: null
+@@ -668,8 +669,9 @@ window.__ModuleLoader__.load({
+ 		const PRODUCT_NAMES = {
+ 			"app.cursor": "Cursor",
+ 			"app.vscode": "VS Code",
+ 			"app.vscodeinsiders": "VS Code Insiders",
++			"app.typora": "Typora",
+ 			"app.windsurf": "Windsurf",
+ 			"app.zed": "Zed",
+ 			"app.sublimetext": "Sublime Text",
+ 			"app.xcode": "Xcode",

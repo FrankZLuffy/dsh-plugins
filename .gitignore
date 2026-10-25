@@ -8,6 +8,11 @@ pnpm-debug.log*
 *.before
 *.log
 
+# asar-patch staging output (normally written next to the installed app.asar)
+app.asar.new-*
+app.asar.bak-*
+*.asar
+
 # OS noise
 Thumbs.db
 desktop.ini

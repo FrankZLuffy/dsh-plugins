@@ -1,0 +1,32 @@
+# 01-open-in-app-vscode-env — Open In: do not inherit ELECTRON_RUN_AS_NODE (VS Code launches in Node mode)
+#
+# Unified diff of the rules in patches/01-open-in-app-vscode-env.mjs.
+# Regenerate with: node bin/gen-review.mjs 01-open-in-app-vscode-env --baseline ...
+
+--- a/dsh/node_modules/@deepseek-ai/dsh-host-open-in-app/lib/index.js
++++ b/dsh/node_modules/@deepseek-ai/dsh-host-open-in-app/lib/index.js
+@@ -345,17 +345,20 @@ const OPEN_IN_APP_CATALOG = [
+ * @param args - argv (never a shell string).
+ * @param options - watch-window length and adapter-specific process options.
+ * @returns after the launch is counted successful; rejects on early failure.
+ */
++/** Adapter env without Electron Node mode. */
++function launchEnvironment(explicit) {
++	const env = scrubbedParentEnv();
++	for (const key of Object.keys(env)) if (key.toUpperCase() === "ELECTRON_RUN_AS_NODE") delete env[key];
++	return { ...env, ...explicit };
++}
+ const launchDetachedApp = (command, args, options) => new Promise((resolve, reject) => {
+ 	const child = spawn(command, [...args], {
+ 		detached: true,
+ 		stdio: "ignore",
+ 		windowsHide: options.windowsHide,
+-		env: {
+-			...scrubbedParentEnv(),
+-			...options.env
+-		}
++		env: launchEnvironment(options.env)
+ 	});
+ 	let settled = false;
+ 	const settle = (outcome) => {
+ 		if (settled) return;

@@ -13,6 +13,7 @@ project-board/      项目板（可拖拽的项目根目录卡片）
 typora-workbench/   Typora 相关工作台增强
 profile/            运行中 profile 配置的镜像（package.json + cordis.patch.yml）
 scripts/            profile-status.mjs —— 镜像漂移检查 / 双向同步
+asar-patches/       app.asar 内部补丁的规则与工具（见 asar-patches/README.md）
 ```
 
 每个插件都是一个**组合包**（bundle）：`package.json` 用 `dsh.bundle.patch` 声明自己的配置层，`cordis.patch.yml` 是那一层，`index.js` / `client.js` 是实现，`locale/*.json` 是文案。
@@ -67,7 +68,7 @@ node scripts/profile-status.mjs --push
 
 ## 有意不纳入版本管理
 
-- **`app.asar` 内部补丁**：见 `~/.dsh/fixes/{open-in-app,open-in-app-typora}`，那里有 `.orig` / `.before` 备份和 `restore.mjs`。这些是直接改安装包二进制做的（VS Code 被 `ELECTRON_RUN_AS_NODE=1` 带坏、加 Typora 并设为默认），App 升级会覆盖 `app.asar`，而且当前源码 checkout 里并没有对应的 `open-in-app` 包可以移植——所以没有可提交的源码形态。
+- **原始 bundle 条目 / baseline**：`~/.dsh/fixes/{open-in-app,open-in-app-typora}` 里的 `.orig` / `.before` 是第三方 bundle 原文，不入库；补丁规则和它们生成的 `review/*.diff` 在 `asar-patches/` 里，已入库。那里的 `restore.mjs` 已过时（哈希锁对应的是旧归档，现在会拒绝执行）。
 - `node_modules/`：由 pnpm 的 `link:` 生成。
 - `~/.dsh` 下的 `sessions/`、`storages/`、`cache/`、`attachments/`：运行数据，不进仓库。
 - profile 的 `cordis.yml`（空根）、`pnpm-lock.yaml`、`pnpm-workspace.yaml`：可再生成；插件依赖全是 `link:`，锁文件不携带额外信息。
